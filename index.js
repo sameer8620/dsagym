@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use("/sdesheet", sdeRoutes);
-app.use("/dsasheet", frazRoutes);
+app.use("/api/sdesheet", sdeRoutes);
+app.use("/api/dsasheet", frazRoutes);
 
 const DB = process.env.DB_URL;
 
