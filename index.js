@@ -15,10 +15,10 @@ app.use(cors());
 app.use("/api/sdesheet", sdeRoutes);
 app.use("/api/dsasheet", frazRoutes);
 
-const DB = process.env.DB_URL;
+const DB_URL = process.env.DB_URL;
 
 mongoose
-  .connect(DB, {
+  .connect(DB_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
