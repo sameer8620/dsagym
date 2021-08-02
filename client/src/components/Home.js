@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import logo from "../images/Logo.png";
 import { Link } from "react-router-dom";
-import axios from "../axios";
+import axios from "axios";
+require("dotenv").config();
 
 const Home = () => {
   useEffect(() => {
@@ -9,8 +10,9 @@ const Home = () => {
   }, []);
   const fetchAll = async () => {
     const present = localStorage.getItem("dsagym");
+    const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
     if (present != null) return;
-    const d = await axios.get(`/sdesheet`);
+    const d = await axios.get(`/${REACT_APP_API_KEY}/sdesheet`);
     const content = d.data;
     console.log(content);
     localStorage.setItem("dsagym", JSON.stringify(content));

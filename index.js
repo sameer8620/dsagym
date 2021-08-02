@@ -12,10 +12,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-const API_KEY = process.env.API_KEY;
+console.log(process.env);
 
-app.use(`/${API_KEY}/sdesheet`, sdeRoutes);
-app.use(`${API_KEY}/dsasheet`, frazRoutes);
+const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
+
+app.use(`/${REACT_APP_API_KEY}/sdesheet`, sdeRoutes);
+app.use(`${REACT_APP_API_KEY}/dsasheet`, frazRoutes);
 
 const DB_URL = process.env.DB_URL;
 

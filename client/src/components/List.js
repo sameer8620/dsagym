@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Table from "@material-ui/core/Table";
@@ -8,8 +9,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Checkbox } from "@material-ui/core";
-import axios from "../axios";
 import Footer from "./Footer";
+require("dotenv").config();
 
 const List = (props) => {
   const [rows, setRows] = useState([]);
@@ -38,7 +39,8 @@ const List = (props) => {
 
   const axiosget = async () => {
     if (localStorage.getItem("dsagym") == null) {
-      const d = await axios.get(`/sdesheet`);
+      const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
+      const d = await axios.get(`/${REACT_APP_API_KEY}/sdesheet`);
       localStorage.setItem("dsagym", JSON.stringify(d.data));
     }
     getData();
