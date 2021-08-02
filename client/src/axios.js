@@ -1,5 +1,6 @@
+require("dotenv").config();
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: `https://dsagym.herokuapp.com/${process.env.API_KEY}/sdesheet`,
 });
