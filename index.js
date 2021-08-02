@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -5,7 +6,6 @@ const bodyParser = require("body-parser");
 
 const sdeRoutes = require("./routes/sde");
 const frazRoutes = require("./routes/fraz");
-const DB_URL = require("./keys");
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose
-  .connect(DB_URL, {
+  .connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
