@@ -15,7 +15,21 @@ app.use(cors());
 app.use("/sdesheet", sdeRoutes);
 app.use("/dsasheet", frazRoutes);
 
-const PORT = process.env.PORT || 5000;
+const DB = process.env.DB_URL;
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log("db connected");
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
@@ -25,18 +39,8 @@ if (process.env.NODE_ENV == "production") {
   });
 }
 
-mongoose
-  .connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on PORT: ${PORT}`);
-    });
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on PORT: ${PORT}`);
+});
