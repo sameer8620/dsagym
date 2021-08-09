@@ -12,8 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-console.log(process.env);
-
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 app.use(`/${REACT_APP_API_KEY}/sdesheet`, sdeRoutes);

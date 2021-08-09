@@ -14,7 +14,6 @@ const Home = () => {
     if (present != null) return;
     const d = await axios.get(`/${REACT_APP_API_KEY}/sdesheet`);
     const content = d.data;
-    console.log(content);
     localStorage.setItem("dsagym", JSON.stringify(content));
     console.log("here");
   };
